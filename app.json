@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "YellowRoute",
+    "slug": "YellowRoute",
+    "version": "1.0.0",
+
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
