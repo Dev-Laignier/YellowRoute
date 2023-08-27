@@ -1,13 +1,18 @@
 import React from "react";
-import { SafeAreaView, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { HeaderContainer, MenuIcon, Title,  } from "./style";
 
 const Header = () => {
   const navigation = useNavigation();
+
+  const handleOpenDrawer = () => {
+    navigation.openDrawer();
+  };
+
   return (
     <HeaderContainer>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+      <TouchableOpacity onPress={handleOpenDrawer}>
         <MenuIcon name="menu-sharp" size={40} color="#201140" />
       </TouchableOpacity>
       {/* Título */}
