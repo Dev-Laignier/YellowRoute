@@ -3,7 +3,7 @@
     "name": "YellowRoute",
     "slug": "YellowRoute",
     "version": "1.0.0",
-
+    "owner": "devrino",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -18,10 +18,13 @@
         "projectId": "acbb8942-f450-493a-9f41-17bae05d9e6f"
       },
       "android": {
-        "adaptiveIcon": "./assets/adaptive-icon.png"
+        "adaptiveIcon": {
+          "foregroundImage": "./assets/adaptive-icon.png",
+          "backgroundColor": "#000"
+        }
       },
       "web":{
-        "favicon":"./assets/favicon.png"
+        "favicon":"./assets/icon.png"
       }
     }
   }

@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <TouchableOpacity onPress={handleOpenDrawer}>
-        <MenuIcon name="menu-sharp" size={40} color="#201140" />
+        <MenuIcon name="menu-sharp" size={32} color="#201140" />
       </TouchableOpacity>
       {/* Título */}
       <Title>Yellow Route</Title>

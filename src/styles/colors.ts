@@ -8,6 +8,7 @@ const colors = {
   SECONDARY: '#666',
   ACCENT: '#e74c3c',
   YELLOW: "#F6C101",
+  YELLOWBACKGROUND: "#F6C101",
   THIRD: '#3498db',
   FOURTH: '#2ecc71',
   YELLOW_SECONDARY: "#ffaa21",

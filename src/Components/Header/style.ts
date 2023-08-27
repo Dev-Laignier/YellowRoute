@@ -12,7 +12,7 @@ export const HeaderContainer = styled.View`
 `
 
 export const Title = styled.Text`
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 600;
   color: #201140;
   align-self: center;

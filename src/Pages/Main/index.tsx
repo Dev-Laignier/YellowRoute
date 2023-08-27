@@ -76,7 +76,7 @@ const Main: React.FC = () => {
           </Title>
         </ContainerIcon>
       </Container>
-      <Footer />
+      <Footer/>
     </SafeAreaView>
   );
 };
