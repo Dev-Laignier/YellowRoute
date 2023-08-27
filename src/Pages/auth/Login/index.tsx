@@ -67,7 +67,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView onScroll={(event) => console.log(event.nativeEvent)}>
       <Container>
         <IconBac>
           {/* Navigate to "Welcome" screen */}
@@ -81,9 +81,21 @@ const Login: React.FC = () => {
         </ImageLogin>
         <TextOne left={120}>Login</TextOne>
         {/* Username input */}
-        <TextInput placeholder="Usuário" onChangeText={setEmail} iconName="user" secureTextEntry={false} />
+        <TextInput 
+          placeholder="Usuário" 
+          placeholderTextColor="#DD440040"
+          onChangeText={setEmail} 
+          iconName="user" 
+          secureTextEntry={false}
+        />
         {/* Password input */}
-        <PasswordInput placeholder="Senha" secureTextEntry={true} onChangeText={setPassword} iconName="lock" />
+        <PasswordInput 
+          placeholder="Senha"
+          placeholderTextColor="#DD440040"
+          secureTextEntry={true} 
+          onChangeText={setPassword} 
+          iconName="lock" 
+        />
         <RecoverContainer>
           <RecoverContainerOne>
             <TouchableOpacity onPress={handleToggle}>

@@ -5,7 +5,7 @@ export const Container = styled(View)`
   flex-direction: row;
   align-items: center;
   height: 60px;
-  border-color: #F6C101;
+  border-color: #201140;
   border-radius: 8px;
   width: 90%;
   border-width: 1px;

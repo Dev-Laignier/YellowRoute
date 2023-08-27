@@ -6,7 +6,7 @@ import { StatusBar } from "react-native";
 export default function Routes(){
   return(
     <NavigationContainer>
-      <StatusBar backgroundColor={"#000"} barStyle="light-content"/>
+      <StatusBar barStyle="default"/>
       <StackRoutes/>
     </NavigationContainer>
   )

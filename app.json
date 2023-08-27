@@ -4,8 +4,25 @@
     "slug": "YellowRoute",
     "version": "1.0.0",
 
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#000000"
+    },
+
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "acbb8942-f450-493a-9f41-17bae05d9e6f"
+      },
+      "android": {
+        "adaptiveIcon": "./assets/adaptive-icon.png"
+      },
+      "web":{
+        "favicon":"./assets/favicon.png"
+      }
+    }
   }
 }

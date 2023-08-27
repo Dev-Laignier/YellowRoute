@@ -1,8 +1,8 @@
 // Import necessary libraries and components
 import React, { useState } from "react";
 import { useNavigation } from '@react-navigation/native'
-import { SafeAreaView, ScrollView, Image, TouchableOpacity, Text, Alert } from "react-native";
-import { Container, IconBack, InputText, MainContent, PasswordInputContainer, PasswordTextInput, ToggleButton } from "./style";
+import { SafeAreaView, ScrollView, Image, TouchableOpacity, Text, Alert, View } from "react-native";
+import { Container, IconBack, InputText, PasswordInputContainer, PasswordTextInput, ToggleButton } from "./style";
 import TextTwo from "../../../Components/TextTwo";
 import TextThree from "../../../Components/TextThree";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -62,78 +62,74 @@ const SignUp: React.FC = () => {
     });
   }
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Function to toggle password visibility
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <Container> 
-      <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView>
-          <MainContent>
+     
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView>
+        <Container>
             <IconBack>
-              {/* Navigate to the "Welcome" screen */}
-              <TouchableOpacity onPress={()=> navigation.navigate( "Welcome" )}>
-                <Image source={require('../../../assets/icon/seta.png')}/>
+              <TouchableOpacity 
+              onPress={()=> navigation.navigate( "Welcome" )}><Image source={require('../../../assets/icon/seta.png')}/>
               </TouchableOpacity>
             </IconBack>
-            <TextTwo>
-              Dados pessoais
-            </TextTwo>
+            <TextTwo>Dados pessoais</TextTwo>
             {/* User's first name input */}
-            <TextThree>
-              Nome
-            </TextThree>
-            <InputText 
-            placeholder="Digite seu Nome"
-            onChangeText={setName}
-            autoCapitalize="characters"
-            style={{ borderColor: showAlerts && name === "" ? "#D40" : "#F6C101" }}
-            />{ showAlerts && name === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
+            <TextThree> Nome </TextThree>
+            <InputText  
+            placeholder="Digite seu Nome" 
+            onChangeText={setName} 
+            autoCapitalize="characters" 
+            style={{ borderColor: showAlerts && name === "" ? "#D40" : "#F6C101" }} 
+            />
+            { showAlerts && name === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
             {/* User's last name input */}
-            <TextThree>
-              Sobrenome
-            </TextThree>
-            <InputText 
-            placeholder="Digite seu sobrenome"
-            onChangeText={setLastName}
-            autoCapitalize="characters"
-            style={{ borderColor: showAlerts && lastName === "" ? "#D40" : "#F6C101" }}
-            />{ showAlerts && lastName === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
+            <TextThree>  Sobrenome </TextThree>
+            <InputText  
+            placeholder="Digite seu sobrenome" 
+            onChangeText={setLastName} 
+            autoCapitalize="characters" 
+            style={{ borderColor: showAlerts && lastName === "" ? "#D40" : "#F6C101" }} 
+            />
+            { showAlerts && lastName === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
             {/* User's contact information */}
-            <TextTwo>
-              Contato
-            </TextTwo>
+            <TextTwo>  Contato </TextTwo>
             {/* User's phone number input */}
-            <TextThree>
-              Celular
-            </TextThree>
-            <InputText 
-            placeholder="Digite o DDD + Telefone"
-            onChangeText={setPhoneNumber}
-            keyboardType="phone-pad"
-            style={{ borderColor: showAlerts && phoneNumber === "" ? "#D40" : "#F6C101" }}
-            />{ showAlerts && phoneNumber === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
+            <TextThree>  Celular </TextThree>
+            <InputText  
+            placeholder="Digite o DDD + Telefone" 
+            onChangeText={setPhoneNumber} 
+            keyboardType="phone-pad" 
+            style={{ borderColor: showAlerts && phoneNumber === "" ? "#D40" : "#F6C101" }} 
+            />
+            { showAlerts && phoneNumber === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
             {/* User's email input */}
-            <TextThree>
-              E-mail
-            </TextThree>
+            <TextThree>E-mail</TextThree>
             <InputText 
-              placeholder="Digite seu e-mail"
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              style={{ borderColor: showAlerts && email === "" ? "#D40" : "#F6C101" }}
-            />{ showAlerts && email === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
+            placeholder="Digite seu e-mail" 
+            onChangeText={setEmail} 
+            keyboardType="email-address" 
+            style={{ borderColor: showAlerts && email === "" ? "#D40" : "#F6C101" }}
+            />
+            { showAlerts && email === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
             {/* Confirm user's email */}
-            <TextThree>
-              Confirmação de e-mail
-            </TextThree>
+            <TextThree>Confirmação de e-mail</TextThree>
             <InputText 
-              placeholder="Confirme seu e-mail"
-              onChangeText={setConfirmEmail}
-              keyboardType="email-address"
-              style={{ borderColor: showAlerts && confirmEmail === "" ? "#D40" : "#F6C101" }}
-            />{ showAlerts && confirmEmail === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
-            <TextTwo>
-              Crie sua Senha
-            </TextTwo>
-            <Text style={{ color:"#20114050", fontSize: 12, width: "92%" }}>
+            placeholder="Confirme seu e-mail" 
+            onChangeText={setConfirmEmail} 
+            keyboardType="email-address" 
+            style={{ borderColor: showAlerts && confirmEmail === "" ? "#D40" : "#F6C101" }}
+            />
+            { showAlerts && confirmEmail === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
+            <TextTwo>Crie sua Senha</TextTwo>
+            <Text 
+            style={{ color:"#20114050", fontSize: 12, width: "92%" }}>
               Sua senha precisa ter no mínimo 8 caracteres, sendo uma letra maiúscula, uma minúscula, um caractere especial e um número.
             </Text>
             {/* User's password input */}
@@ -141,58 +137,29 @@ const SignUp: React.FC = () => {
               Senha
             </TextThree>
             <InputText 
-              placeholder="Digite sua senha" 
+              placeholder="Digite sua senha"
               onChangeText={setPassword}
-              secureTextEntry={true}
+              secureTextEntry={!showPassword} 
               style={{ borderColor: showAlerts && password === "" ? "#D40" : "#F6C101" }}
-            />{ showAlerts && password === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
+            />
+              { showAlerts && password === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
             {/* Confirm user's password */}
-            <TextThree>
-              Confirmação de senha
-            </TextThree>
+            <TextThree>Confirmação de senha</TextThree>
             <InputText 
               placeholder="Confirme sua senha" 
-              onChangeText={setConfirmPassword}
-              secureTextEntry={true}
+              onChangeText={setConfirmPassword} 
+              secureTextEntry={!showPassword} 
               style={{ borderColor: showAlerts && confirmPassword === "" ? "#D40" : "#F6C101" }}
-            />{ showAlerts && confirmPassword === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
-            {/* Button to register user */}
-            <Button
-              title="Cadastrar"
-              onPress={handleNewUser}
-              customStyle={buttonStyle}
             />
-          </MainContent>
-        </ScrollView>
-      </SafeAreaView>
-    </Container> 
+            { showAlerts && confirmPassword === "" && <Text style={{ color: "#D40" }}>Campo obrigatorio</Text>}
+            {/* Button to register user */}
+            <TouchableOpacity onPress={toggleShowPassword} style={{ marginTop: 8, marginBottom: -20 }}>
+              <TextThree>{ showPassword ? "Ocultar Senha": "Mostrar Senha" }</TextThree>
+            </TouchableOpacity>
+            <Button title="Cadastrar" onPress={handleNewUser} customStyle={buttonStyle}/>
+        </Container>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
-
-// Export the SignUp component as the default export
 export default SignUp;
-
-// Define the PasswordInput component
-const PasswordInput = ({ placeholder, onChangeText }) => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Function to toggle password visibility
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  return (
-    <PasswordInputContainer>
-      {/* Password input with toggle button */}
-      <PasswordTextInput
-        secureTextEntry={!showPassword}
-        placeholder={placeholder}
-        onChangeText={onChangeText}
-      />
-      {/* Toggle button to show/hide password */}
-      <ToggleButton onPress={togglePasswordVisibility}>
-        <Icon name={showPassword ? 'eye-slash' : 'eye'} size={24} color="#201140" />
-      </ToggleButton>
-    </PasswordInputContainer>
-  );
-};

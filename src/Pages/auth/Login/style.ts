@@ -5,13 +5,13 @@ export const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: colors.BACKGROUND;
+  background-color: colors.BACKGRO;
 `
 export const IconBac = styled.View`
   /* position: absolute; */
   width: 42px;
   height: 42px;
-  right: 155px; 
+  right: 38%;
   top: 32px;
   /* margin: 55px 25px */
 `
