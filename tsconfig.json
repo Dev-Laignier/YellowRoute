@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "ES6",
+  },
+  "extends": "expo/tsconfig.base",
+  "files": [
+    "./src/theme/styles.d.ts"
+  ]
+}
