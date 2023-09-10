@@ -8,24 +8,25 @@ export const Container = styled.View`
 `;
 
 export const Goback = styled.TouchableOpacity`
-  width: 42px;
-  height: 42px;
-  position: absolute;
-  top: 6%;
+  width: 32px;
+  height: 32px;
   margin-left: 32px;
+  position: absolute;
+  top: 32px;
   align-self: flex-start;
 `;
 
 export const Animation = styled.View`
   width: 100%;
   height: 280px;
-  margin-top: 18%;
-  margin-bottom: 4px;
+  margin-top: 16px;
+  margin-bottom: 12px;
 `;
 export const Title = styled.Text`
-  font-size: 18px;
+  font-size: 24px;
   color: ${({ theme }) => theme.COLORS.BLUE};
   text-align: center;
+  width: 80%;
   margin-bottom: 12px;
   text-shadow: rgba(255,68,221,0.90) 1px 0 10px;
 `;

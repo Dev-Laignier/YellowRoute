@@ -1,30 +1,39 @@
 import React from "react";
-import { ScrollView } from "native-base"; // Import ScrollView from NativeBase
-import { useNavigation } from "@react-navigation/native"; // Import the navigation hook from React Navigation
+import { useNavigation, NavigationProp } from "@react-navigation/native"; // Import the navigation hook from React Navigation
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
 import { Image } from "react-native"; // Import the React Native image component
+import { Center, ScrollView } from "native-base"; // Import the React Native
 import { TouchableOpacity } from "react-native-gesture-handler"; // Import TouchableOpacity to create a clickable button
-import { Container, Texto, Goback, Title, Animation, TextRecovery } from "./styles"; // Import custom styles
+import { Texto, Goback, Title, Animation, TextRecovery } from "./styles"; // Import custom styles
 import Button from "../../../components/Button"; // Import a custom button component
 import Input from "../../../components/Input"; // Import a custom input component
 
+// Define a type for the available stack routes
+type StackRoutes = {
+  Login: undefined; // "Login" screen with no additional parameters
+  SignUp: undefined; // "SignUp" screen with no additional parameters
+  Welcome: undefined; // "Welcome" screen with no additional parameters
+  // You can include other screens and their parameters here as needed
+};
+
 const Login = () => {
-  const navigation = useNavigation(); // Initialize the navigation hook
+  const navigation: NavigationProp<StackRoutes> = useNavigation(); // Initialize the navigation hook
 
   const handleForgotPassword = () => {
     // Implement the logic to recover the password here
   };
 
   const handleGoBack = () => {
-    navigation.goBack(); // Go back to the previous screen when the button is pressed
+    navigation.navigate("Welcome"); // Go back to the previous screen when the button is pressed
   };
 
   return (
-    <Container>
-      <Goback onPress={handleGoBack} activeOpacity={0.9}>
+    <ScrollView flex={1} showsVerticalScrollIndicator={false}>
+    <Center>
+      <Goback onPress={handleGoBack} activeOpacity={0.7}>
         <Image source={require("../../../assets/icon/seta.png")} />
       </Goback>
-      <ScrollView showsVerticalScrollIndicator={false} flex={1}>
+      {/* <ScrollView showsVerticalScrollIndicator={false} flex={1}> */}
         <Animation>
           <LottieView
             autoPlay
@@ -35,25 +44,19 @@ const Login = () => {
             source={require("../../../assets/animation/Earth_Green_Blue.json")}
           />
         </Animation>
-
         <Title style={{ alignSelf: "center" }}>
-          Log in with your email and password
+          Faça Login com seu e-mail e senha
         </Title>
-        <Input
-          placeholder="Email"
-        />
-        <Input
-          placeholder="Password"
-          secureTextEntry
-        />
+        <Input label="Email" />
+        <Input label="Password" secureTextEntry />
         <TouchableOpacity onPress={handleForgotPassword} activeOpacity={0.6}>
-          <TextRecovery>Forgot your password? We can help!</TextRecovery>
+          <TextRecovery>Esquceu sua senha? podemos te ajudar!!</TextRecovery>
         </TouchableOpacity>
         <Button onPress={() => {}} mb={12}>
           <Texto>Log In</Texto>
         </Button>
-      </ScrollView>
-    </Container>
+      </Center>
+    </ScrollView>
   );
 };
 

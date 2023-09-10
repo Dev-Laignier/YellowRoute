@@ -2,11 +2,12 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Welcome from "../screens/Welcome";
 import Login from "../screens/auth/Login";
+import SignUp from "../screens/auth/SignUp";
 
 const Stack = createNativeStackNavigator();
 
 const StackRoute: React.FC = () => {
-  return(
+  return (
     <Stack.Navigator>
       <Stack.Screen
         name="Welcome"
@@ -22,7 +23,14 @@ const StackRoute: React.FC = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
-}
+};
 export default StackRoute;

@@ -11,7 +11,7 @@ type StackRoutes = {
   Login: undefined; // "Login" screen with no additional parameters
   SignUp: undefined; // "SignUp" screen with no additional parameters
   // You can include other screens and their parameters here as needed
-}
+};
 
 // Define the Welcome component
 const Welcome = () => {
@@ -36,14 +36,8 @@ const Welcome = () => {
         resizeMode="cover"
         style={{ flex: 1 }}
       >
-        <Center
-          flex={1}
-          justifyContent="center"
-          alignItems="center"
-        >
-          <TextTop>
-            Crie e gerencie suas rotas
-          </TextTop>
+        <Center flex={1}>
+          <TextTop>Crie e gerencie suas rotas</TextTop>
           {/* Render a custom button for "Login" */}
           <Button onPress={handleLogin}>
             <Texto>Login</Texto>
