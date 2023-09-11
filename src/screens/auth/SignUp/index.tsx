@@ -37,13 +37,12 @@ const SignUp = () => {
         <Input label="Nome" />
         <Input label="Sobrenome" />
         <Input label="Email" />
-        <Input label="Password" />
-        <Input label="Password Confirm" />
+        <Input label="Senha" />
+        <Input label="Confirme a Senha" />
         <TextInfo>
-          By creating an account, you agree to our Terms of Service and Privacy
-          Policy.
+          Ao criar uma conta, você concorda com nossos Termos de Serviço e Política de Privacidade
         </TextInfo>
-        <Button onPress={handleRegister} mb={12}>
+        <Button onPress={handleRegister} mb={12} marginBottom={24}>
           <Texto>CADASTRAR</Texto>
         </Button>
       </Center>

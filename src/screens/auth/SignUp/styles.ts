@@ -35,10 +35,10 @@ export const Texto = styled.Text`
   font-weight: 800;
 `;
 export const TextInfo = styled.Text`
-  font-size: 18px;
+  font-size: 12px;
   color: ${({ theme }) => theme.COLORS.BLUE};
   text-align: center;
-  width: 90%;
-  margin-bottom: 12px;
+  width: 85%;
+  margin: 12px;
   text-shadow: rgba(255,68,221,0.90) 1px 0 10px;
 `;

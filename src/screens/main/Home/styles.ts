@@ -1,5 +1,11 @@
 import styled from "styled-components/native";
 
+export const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const TextTop = styled.Text`
   flex: 1;
   width: 85%;
@@ -26,4 +32,9 @@ export const Texto = styled.Text`
   color: ${({ theme }) => theme.COLORS.YELLOW};;
   letter-spacing: 3px;
   font-weight: 800;
+`;
+export const Title = styled.Text`
+  font-size: 18px;
+  color: ${({ theme }) => theme.COLORS.PRIMARY_700};
+  font-weight: 400;
 `

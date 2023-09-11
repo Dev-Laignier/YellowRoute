@@ -7,13 +7,12 @@ import dark from "./src/theme/dark";
 import { SafeAreaView, StatusBar } from "react-native";
 
 export default function App() {
-
   return (
-    <ThemeProvider theme={light}>
-      <StatusBar barStyle="default" />
-      <SafeAreaView style={{ flex: 1 }}>
-      <Routes />
-      </SafeAreaView>
-    </ThemeProvider>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ThemeProvider theme={light}>
+        <StatusBar barStyle="default" />
+        <Routes />
+      </ThemeProvider>
+    </SafeAreaView>
   );
 }

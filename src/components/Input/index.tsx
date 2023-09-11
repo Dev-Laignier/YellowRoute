@@ -7,8 +7,10 @@ const InputTeste = ({ label, ...rest }) => {
   const fontSize = new Animated.Value(16);
   const top = new Animated.Value(25);
   const color = isFocused ? "#0891b2" : "#ffffff00";
+  const marginTop = isFocused ? 14 : 0; // Inicialmente, definimos a margem como 20
 
   useEffect(() => {
+
     Animated.timing(fontSize, {
       toValue: isFocused ? 20 : 20,
       duration: 200,
@@ -27,6 +29,7 @@ const InputTeste = ({ label, ...rest }) => {
       style={{
         borderColor: "lightgray",
         paddingTop: 10,
+        marginTop, // Usando a margem superior dinâmica
       }}
     >
       <Animated.Text
@@ -45,7 +48,7 @@ const InputTeste = ({ label, ...rest }) => {
         onBlur={() => setIsFocused(false)}
         placeholder={label}
         borderColor={"lightgray"}
-        mb={4}
+        mb={2}
         w={320}
         h={55}
         justifyContent={"center"}

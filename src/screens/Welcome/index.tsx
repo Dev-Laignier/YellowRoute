@@ -1,9 +1,9 @@
 // Import the necessary modules and components
 import React, { useState } from "react";
 import { ImageBackground } from "react-native";
-import { Center, Box, VStack } from "native-base";
+import { Center, Box, VStack, ScrollView } from "native-base";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { TextBottm, TextTop, Texto } from "./styles";
+import { TextBottom, TextTop, Texto } from "./styles";
 import Button from "../../components/Button";
 
 // Define a type for the available stack routes
@@ -20,7 +20,7 @@ const Welcome = () => {
 
   // Function to handle navigation to the "Login" screen
   const handleLogin = () => {
-    navigation.navigate("Login");
+    navigation.navigate("Home");
   };
 
   // Function to handle navigation to the "SignUp" screen
@@ -42,12 +42,10 @@ const Welcome = () => {
           <Button onPress={handleLogin}>
             <Texto>Login</Texto>
           </Button>
-
-          {/* Render a custom button for "Sign Up" */}
+          {/* Render a custom button for "Sign Up" */}{" "}
           <Button onPress={handleSignUp}>
-            <Texto>Sign Up</Texto>
+            <Texto>SignUp</Texto>
           </Button>
-
           {/* Create a decorative line */}
           <Box
             width="85%"
@@ -55,10 +53,9 @@ const Welcome = () => {
             borderColor="#201140"
             margin={4}
           />
-
-          <TextBottm>
+          <TextBottom>
             Yellow route é o melhor assistente pessoal para gerenciar suas rotas
-          </TextBottm>
+          </TextBottom>
         </Center>
       </ImageBackground>
     </VStack>

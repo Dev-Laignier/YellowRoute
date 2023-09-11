@@ -29,11 +29,10 @@ const Login = () => {
 
   return (
     <ScrollView flex={1} showsVerticalScrollIndicator={false}>
-    <Center>
-      <Goback onPress={handleGoBack} activeOpacity={0.7}>
-        <Image source={require("../../../assets/icon/seta.png")} />
-      </Goback>
-      {/* <ScrollView showsVerticalScrollIndicator={false} flex={1}> */}
+      <Center>
+        <Goback onPress={handleGoBack} activeOpacity={0.7}>
+          <Image source={require("../../../assets/icon/seta.png")} />
+        </Goback>
         <Animation>
           <LottieView
             autoPlay
@@ -50,10 +49,12 @@ const Login = () => {
         <Input label="Email" />
         <Input label="Password" secureTextEntry />
         <TouchableOpacity onPress={handleForgotPassword} activeOpacity={0.6}>
-          <TextRecovery>Esquceu sua senha? podemos te ajudar!!</TextRecovery>
+          <TextRecovery>
+            Esquceu sua senha? podemos te ajudar!!
+          </TextRecovery>
         </TouchableOpacity>
         <Button onPress={() => {}} mb={12}>
-          <Texto>Log In</Texto>
+          <Texto>Login</Texto>
         </Button>
       </Center>
     </ScrollView>
