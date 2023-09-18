@@ -3,6 +3,9 @@ import React from "react";
 import { Button as ButtonNative, IButtonProps } from "native-base";
 
 interface CustomButtonProps extends IButtonProps {
+  children: React.ReactNode; // Certifique-se de que children seja definido aqui
+  onPress: () => void;
+  mb: number;
   // Adicione quaisquer props personalizadas que você queira passar para o ButtonNative
 }
 

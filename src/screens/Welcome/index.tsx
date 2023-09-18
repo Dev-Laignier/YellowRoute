@@ -1,7 +1,7 @@
 // Import the necessary modules and components
-import React, { useState } from "react";
+import React from "react";
 import { ImageBackground } from "react-native";
-import { Center, Box, VStack, ScrollView } from "native-base";
+import { Center, Box, VStack } from "native-base";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { TextBottom, TextTop, Texto } from "./styles";
 import Button from "../../components/Button";
@@ -20,7 +20,7 @@ const Welcome = () => {
 
   // Function to handle navigation to the "Login" screen
   const handleLogin = () => {
-    navigation.navigate("Home");
+    navigation.navigate("Login");
   };
 
   // Function to handle navigation to the "SignUp" screen

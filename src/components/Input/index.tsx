@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Input } from "native-base";
+import { Input as NativeBaseInput, IInputProps, FormControl } from "native-base";
 import { Animated } from "react-native";
 
-const InputTeste = ({ label, ...rest }) => {
+type Props = IInputProps & {
+  errorMessage?: string | null;
+  label: string;
+}
+
+const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
+
+  const invalid = !!errorMessage || isInvalid;
   const [isFocused, setIsFocused] = useState(false);
   const fontSize = new Animated.Value(16);
   const top = new Animated.Value(25);
@@ -25,6 +32,7 @@ const InputTeste = ({ label, ...rest }) => {
   }, [isFocused]);
 
   return (
+    
     <Animated.View
       style={{
         borderColor: "lightgray",
@@ -43,12 +51,13 @@ const InputTeste = ({ label, ...rest }) => {
       >
         {label}
       </Animated.Text>
-      <Input
+      <FormControl isInvalid={invalid} mb={2}>
+      <NativeBaseInput
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={label}
+        isInvalid={invalid}
         borderColor={"lightgray"}
-        mb={2}
         w={320}
         h={55}
         justifyContent={"center"}
@@ -68,8 +77,12 @@ const InputTeste = ({ label, ...rest }) => {
         }}
         {...rest}
       />
+    <FormControl.ErrorMessage fontSize={24}>
+    {errorMessage}
+    </FormControl.ErrorMessage>
+    </FormControl>
     </Animated.View>
   );
 };
 
-export default InputTeste;
+export default Input;

@@ -5,5 +5,5 @@ export default {
   storageBucket: "yellowroute-df648.appspot.com",
   messagingSenderId: "958848900371",
   appId: "1:958848900371:web:38ca0d5419f970dfd4cee6",
-  measurementId: "G-9HJYF3R8LG"
+  measurementId: "G-9HJYF3R8LG",
 };

@@ -1,11 +1,17 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import React from "react";// 
+import { useNavigation } from "@react-navigation/native";// 
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
-import { Image } from "react-native";
-import { Center, ScrollView } from "native-base";
-import { Texto, Goback, Title, TextInfo, Animation } from "./styles";
-import Button from "../../../components/Button";
-import Input from "../../../components/Input";
+import { Image } from "react-native";// import the image component
+import { Center, ScrollView } from "native-base";// import Component from
+import { Texto, Goback, Title, TextInfo, Animation } from "./styles";// import styles from "./styles
+import Button from "../../../components/Button";// import ButtonComponent from "../../../components/Button
+import Input from "../../../components/Input";// import Input from "../../../components/Input
+import { initializeApp }  from "firebase/app"; // Initialize the app with the firebase configuration
+import { getAuth, signInWithEmailAndPassword, UserCredential } from "firebase/auth"; // Get the auth token from the firebase configuration object and pass it to the login method when the user is logged in with the Firebase credentials passed 
+import firebaseconfig from "../../../settings/Firebase/firebaseconfig";// Firebase configuration object passed to login method when the user is logged in with the Firebase credentials passed credentials 
+
+const app = initializeApp(firebaseconfig);
+const auth = getAuth(app);
 
 const SignUp = () => {
   const navigation = useNavigation();

@@ -1,12 +1,19 @@
 import React from "react";
-import { MaterialIcons, AntDesign, Entypo, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign, Entypo, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { HStack, Icon, IconButton, VStack } from "native-base";
-import { ScrollView } from "react-native";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { Title } from "./styles";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+
+type StackRoutes = {
+  Welcome: undefined;// "Welcome" screen with no additional parameters
+}
 
 const Home: React.FC = () => {
+
+  const navigation: NavigationProp<StackRoutes> = useNavigation();
+
   return (
     <VStack flex={1} justifyContent={"space-between"} alignItems={"center"}>
       <Header />
@@ -14,7 +21,7 @@ const Home: React.FC = () => {
         <VStack alignItems={"center"}>
           <IconButton
             aria-label="calendar"
-            onPress={() => ""}
+            onPress={() => navigation.navigate("Welcome")}
             icon={
               <Icon
                 size={81}
