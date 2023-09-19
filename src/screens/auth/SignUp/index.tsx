@@ -1,27 +1,72 @@
-import React from "react";// 
-import { useNavigation } from "@react-navigation/native";// 
+import React from "react"; //
+import { useNavigation, NavigationProp } from "@react-navigation/native"; //
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
-import { Image } from "react-native";// import the image component
-import { Center, ScrollView } from "native-base";// import Component from
-import { Texto, Goback, Title, TextInfo, Animation } from "./styles";// import styles from "./styles
-import Button from "../../../components/Button";// import ButtonComponent from "../../../components/Button
-import Input from "../../../components/Input";// import Input from "../../../components/Input
-import { initializeApp }  from "firebase/app"; // Initialize the app with the firebase configuration
-import { getAuth, signInWithEmailAndPassword, UserCredential } from "firebase/auth"; // Get the auth token from the firebase configuration object and pass it to the login method when the user is logged in with the Firebase credentials passed 
-import firebaseconfig from "../../../settings/Firebase/firebaseconfig";// Firebase configuration object passed to login method when the user is logged in with the Firebase credentials passed credentials 
+import { Image } from "react-native"; // import the image component
+import { Center, ScrollView } from "native-base"; // import Component from
+import { Texto, Goback, Title, TextInfo, Animation } from "./styles"; // import styles from "./styles
+import Button from "../../../components/Button"; // import ButtonComponent from "../../../components/Button
+import Input from "../../../components/Input"; // import Input from "../../../components/Input
+import { initializeApp } from "firebase/app"; // Initialize the app with the firebase configuration
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import firebaseconfig from "../../../settings/Firebase/firebaseconfig"; // Firebase configuration object passed to login method when the user is logged in with the Firebase credentials passed credentials
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+type StackRoutes = {
+  Home: undefined;
+  Welcome: undefined;
+}
 
 const app = initializeApp(firebaseconfig);
 const auth = getAuth(app);
+// Define type of authentication method to use when authenticating
+type FormDataProps = {
+  name: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
+
+const signUpSchema = yup.object({
+  name: yup.string().required("Informe seu nome"),
+  lastName: yup.string().required("Informe seu sobrenome"),
+  email: yup.string().required("Informe seu e-mail").email("E-mail invalido"),
+  password: yup.string().required("Informe sua senha").min(6,"A senha deve ter no minimo 6 caracteres"),
+  passwordConfirm: yup
+    .string()
+    .required("Confirme sua senha")
+    .oneOf([yup.ref("password")], "As senha precisam ser iguais"),
+});
 
 const SignUp = () => {
-  const navigation = useNavigation();
+  const navigation: NavigationProp<StackRoutes> = useNavigation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    getValues,
+  } = useForm<FormDataProps>({
+    resolver: yupResolver(signUpSchema),
+  });
 
   const handleGoBack = () => {
-    navigation.goBack();
+    navigation.navigate("Welcome");
   };
 
-  const handleRegister = () => {
-    // Implement user registration logic here
+  const handleRegister = (data: FormDataProps) => {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => {
+        navigation.navigate("Home"); // Navigate to "Home" screen on successful login
+      })
+      .catch((error) => {
+        // Handle registration error
+        console.log(error);
+        alert(error); // Display error message if login fails
+      });
   };
 
   return (
@@ -40,16 +85,72 @@ const SignUp = () => {
           />
         </Animation>
         <Title>Create your account</Title>
-        <Input label="Nome" />
-        <Input label="Sobrenome" />
-        <Input label="Email" />
-        <Input label="Senha" />
-        <Input label="Confirme a Senha" />
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { onChange, onBlur } }) => (
+            <Input
+              label="Nome"
+              onChangeText={onChange}
+              value={getValues("name")}
+              errorMessage={errors.name?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="lastName"
+          render={({ field: { onChange, onBlur } }) => (
+            <Input
+              label="Sobrenome"
+              onChangeText={onChange}
+              value={getValues("lastName")}
+              errorMessage={errors.lastName?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, onBlur } }) => (
+            <Input
+              label="E-mail"
+              onChangeText={onChange}
+              value={getValues("email")}
+              errorMessage={errors.email?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, onBlur } }) => (
+            <Input
+              label="Senha"
+              onChangeText={onChange}
+              value={getValues("password")}
+              errorMessage={errors.password?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="passwordConfirm"
+          render={({ field: { onChange, onBlur } }) => (
+            <Input
+              label="Confirme sua senha"
+              onChangeText={onChange}
+              value={getValues("passwordConfirm")}
+              errorMessage={errors.passwordConfirm?.message}
+            />
+          )}
+        />
         <TextInfo>
-          Ao criar uma conta, você concorda com nossos Termos de Serviço e Política de Privacidade
+          Ao criar uma conta, você concorda com nossos Termos de Serviço e
+          Política de Privacidade
         </TextInfo>
-        <Button onPress={handleRegister} mb={12} marginBottom={24}>
-          <Texto>CADASTRAR</Texto>
+        <Button onPress={handleSubmit(handleRegister)} mb={24}>
+          <Texto> CADASTRAR </Texto>
         </Button>
       </Center>
     </ScrollView>

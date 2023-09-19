@@ -9,7 +9,7 @@ interface CustomButtonProps extends IButtonProps {
   // Adicione quaisquer props personalizadas que você queira passar para o ButtonNative
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ ...rest }) => {
+const Button: React.FC<CustomButtonProps> = ({ ...rest }) => {
   return (
     <ButtonNative
       w={320}
@@ -24,4 +24,4 @@ const CustomButton: React.FC<CustomButtonProps> = ({ ...rest }) => {
   );
 };
 
-export default CustomButton;
+export default Button;
