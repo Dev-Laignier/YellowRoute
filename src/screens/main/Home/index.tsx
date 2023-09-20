@@ -7,24 +7,38 @@ import { Title } from "./styles";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 
 type StackRoutes = {
-  Welcome: undefined;// "Welcome" screen with no additional parameters
-}
+  Welcome: undefined; // "Welcome" screen with no additional parameters
+};
 
 const Home: React.FC = () => {
-
+  
   const navigation: NavigationProp<StackRoutes> = useNavigation();
 
   return (
-    <VStack flex={1} justifyContent={"space-between"} alignItems={"center"}>
+    <VStack
+      flex={1}
+      justifyContent={"space-between"}
+      alignItems={"center"}
+      bg={"#f8f8f8"}
+    >
       <Header />
       <HStack space={6}>
         <VStack alignItems={"center"}>
           <IconButton
             aria-label="calendar"
             onPress={() => navigation.navigate("Welcome")}
+            m={4}
+            w={70}
+            h={70}
+            _pressed={{
+              bgColor: "#f8f8f8",
+              _icon: {
+                color: "#006BA190",
+              },
+            }}
             icon={
               <Icon
-                size={81}
+                size={20}
                 as={AntDesign}
                 name="calendar"
                 color={"#006BA1"}
@@ -37,7 +51,22 @@ const Home: React.FC = () => {
           <IconButton
             aria-label="users"
             onPress={() => ""}
-            icon={<Icon size={81} as={Entypo} name="users" color={"#006BA1"} />}
+            m={4}
+            w={70}
+            h={70}
+            _pressed={{
+              bgColor: "#f8f8f8",
+              _icon: {
+                color: "#006BA190",
+              },
+            }}
+            icon={
+              <Icon
+                size={20}
+                as={Entypo}
+                name="users"
+                color={"#006BA1"}
+              />}
           />
           <Title>Clientes</Title>
         </VStack>
@@ -45,9 +74,18 @@ const Home: React.FC = () => {
           <IconButton
             aria-label="dashboard"
             onPress={() => ""}
+            m={4}
+            w={70}
+            h={70}
+            _pressed={{
+              bgColor: "#f8f8f8",
+              _icon: {
+                color: "#006BA190",
+              },
+            }}
             icon={
               <Icon
-                size={81}
+                size={20}
                 as={AntDesign}
                 name="dashboard"
                 color={"#006BA1"}
@@ -62,8 +100,22 @@ const Home: React.FC = () => {
           <IconButton
             aria-label="copy1"
             onPress={() => ""}
+            m={4}
+            w={70}
+            h={70}
+            _pressed={{
+              bgColor: "#f8f8f8",
+              _icon: {
+                color: "#006BA190",
+              },
+            }}
             icon={
-              <Icon size={81} as={AntDesign} name="copy1" color={"#006BA1"} />
+              <Icon
+                size={20}
+                as={AntDesign}
+                name="copy1"
+                color={"#006BA1"}
+              />
             }
           />
           <Title>Pedidos</Title>
@@ -72,9 +124,18 @@ const Home: React.FC = () => {
           <IconButton
             aria-label="bar-chart"
             onPress={() => ""}
+            m={4}
+            w={70}
+            h={70}
+            _pressed={{
+              bgColor: "#f8f8f8",
+              _icon: {
+                color: "#006BA190",
+              },
+            }}
             icon={
               <Icon
-                size={81}
+                size={20}
                 as={FontAwesome}
                 name="bar-chart"
                 color={"#006BA1"}
@@ -87,8 +148,22 @@ const Home: React.FC = () => {
           <IconButton
             aria-label="map-o"
             onPress={() => ""}
+            m={4}
+            w={70}
+            h={70}
+            _pressed={{
+              bgColor: "#f8f8f8",
+              _icon: {
+                color: "#006BA190",
+              },
+            }}
             icon={
-              <Icon size={81} as={FontAwesome} name="map-o" color={"#006BA1"} />
+              <Icon 
+                size={20}
+                as={FontAwesome}
+                name="map-o"
+                color={"#006BA1"}
+              />
             }
           />
           <Title>Rotas</Title>
@@ -99,9 +174,18 @@ const Home: React.FC = () => {
           <IconButton
             aria-label="user-friends"
             onPress={() => ""}
+            m={4}
+            w={70}
+            h={70}
+            _pressed={{
+              bgColor: "#f8f8f8",
+              _icon: {
+                color: "#006BA190",
+              },
+            }}
             icon={
               <Icon
-                size={81}
+                size={20}
                 as={FontAwesome5}
                 name="user-friends"
                 color={"#006BA1"}

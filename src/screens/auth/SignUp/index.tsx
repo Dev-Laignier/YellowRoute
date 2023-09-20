@@ -1,7 +1,7 @@
-import React from "react"; //
+import React, { useState } from "react"; //
 import { useNavigation, NavigationProp } from "@react-navigation/native"; //
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
-import { Image } from "react-native"; // import the image component
+import { ActivityIndicator, Image } from "react-native"; // import the image component
 import { Center, ScrollView } from "native-base"; // import Component from
 import { Texto, Goback, Title, TextInfo, Animation } from "./styles"; // import styles from "./styles
 import Button from "../../../components/Button"; // import ButtonComponent from "../../../components/Button
@@ -43,6 +43,8 @@ const signUpSchema = yup.object({
 const SignUp = () => {
   const navigation: NavigationProp<StackRoutes> = useNavigation();
 
+  const [loading, setLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -58,6 +60,7 @@ const SignUp = () => {
   };
 
   const handleRegister = (data: FormDataProps) => {
+    setLoading(true);
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
         navigation.navigate("Home"); // Navigate to "Home" screen on successful login
@@ -67,6 +70,7 @@ const SignUp = () => {
         console.log(error);
         alert(error); // Display error message if login fails
       });
+      setLoading(false);
   };
 
   return (
@@ -150,7 +154,11 @@ const SignUp = () => {
           Política de Privacidade
         </TextInfo>
         <Button onPress={handleSubmit(handleRegister)} mb={24}>
-          <Texto> CADASTRAR </Texto>
+          {loading ? (
+            <ActivityIndicator color="#0891b2" size={32} /> // Indicador de carregamento
+          ) : (
+            <Texto>CADASTRAR</Texto> // Texto do botão
+          )}
         </Button>
       </Center>
     </ScrollView>

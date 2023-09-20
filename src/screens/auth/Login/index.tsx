@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo"; // Import NetInfo from React Native
 import { useNavigation, NavigationProp } from "@react-navigation/native"; // Import the navigation hook from React Navigation
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
-import { Image, Text } from "react-native"; // Import the React Native image component
+import { ActivityIndicator, Image } from "react-native"; // Import the React Native image component
 import { Center, ScrollView } from "native-base"; // Import the React Native Base components
 import { TouchableOpacity } from "react-native-gesture-handler"; // Import TouchableOpacity to create a clickable button
 import { Texto, Goback, Title, Animation, TextRecovery } from "./styles"; // Import custom styles
@@ -43,6 +43,8 @@ const auth = getAuth(app); // Get the authentication configuration
 const Login = () => {
   const navigation: NavigationProp<StackRoutes> = useNavigation(); // Initialize the navigation hook
 
+  const [loading, setLoading] = useState(false);
+
   const { control, handleSubmit, formState: { errors }, setValue, getValues } = useForm<FormDataProps>({
     resolver: yupResolver(loginSchema),
   });
@@ -69,6 +71,7 @@ const Login = () => {
 
   const handleLogin = async (data: FormDataProps) => {
     try {
+      setLoading(true);
       // Store user data in AsyncStorage
       await AsyncStorage.setItem(
         "storedUserData",
@@ -77,11 +80,7 @@ const Login = () => {
           password: data.password,
         })
       );
-      const userCredential: UserCredential = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
+      const userCredential: UserCredential = await signInWithEmailAndPassword( auth, data.email, data.password);
       const user = userCredential.user;
 
       // After successful login, get the authentication token
@@ -93,6 +92,8 @@ const Login = () => {
       navigation.navigate("Home");
     } catch (error) {
       console.error(error);
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -153,7 +154,11 @@ const Login = () => {
           </TextRecovery>
         </TouchableOpacity>
         <Button onPress={handleSubmit(handleLogin)} mb={12}>
-          <Texto>Login</Texto>
+        {loading ? (
+            <ActivityIndicator color="#0891b2" size={32} /> // Indicador de carregamento
+          ) : (
+            <Texto>Login</Texto> // Texto do botão
+          )}
         </Button>
       </Center>
     </ScrollView>
