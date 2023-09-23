@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Input as NativeBaseInput, IInputProps, FormControl } from "native-base";
+import { Input as NativeBaseInput, IInputProps, FormControl, theme } from "native-base";
 import { Animated } from "react-native";
 
 type Props = IInputProps & {
   errorMessage?: string | null;
-  label: string;
+  label?: string;
 }
 
 const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
@@ -57,7 +57,6 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
         onBlur={() => setIsFocused(false)}
         placeholder={label}
         isInvalid={invalid}
-        borderColor={"lightgray"}
         w={320}
         h={55}
         justifyContent={"center"}
@@ -74,6 +73,7 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
         _invalid={{
           borderColor: "orange.500",
           borderWidth: 2,
+          bgColor: "#f9731630"
         }}
         {...rest}
       />

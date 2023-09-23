@@ -29,6 +29,7 @@ export const Title = styled.Text`
   width: 80%;
   margin-bottom: 12px;
   text-shadow: rgba(255, 68, 221, 0.9) 1px 0 10px;
+  font-family: ${({ theme }) => theme.FONTS.Rubik_400};
 `;
 
 export const TextRecovery = styled.Text`
@@ -38,11 +39,12 @@ export const TextRecovery = styled.Text`
   margin-bottom: 12px;
   text-decoration: underline;
   text-shadow: rgba(255, 68, 221, 0.9) 1px 0 10px;
+  font-family: ${({ theme }) => theme.FONTS.Rubik_400};
 `;
 
 export const Texto = styled.Text`
   font-size: 30px;
   color: ${({ theme }) => theme.COLORS.YELLOW};
   letter-spacing: 2px;
-  font-weight: 800;
+  font-family: ${({ theme }) => theme.FONTS.Rubik_500};
 `;

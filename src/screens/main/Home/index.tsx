@@ -7,7 +7,8 @@ import { Title } from "./styles";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 
 type StackRoutes = {
-  Welcome: undefined; // "Welcome" screen with no additional parameters
+  Welcome: undefined; // " Define type Welcome" screen
+  Clientes: undefined; // "Define type Clientes" screen
 };
 
 const Home: React.FC = () => {
@@ -50,7 +51,7 @@ const Home: React.FC = () => {
         <VStack alignItems={"center"}>
           <IconButton
             aria-label="users"
-            onPress={() => ""}
+            onPress={() => navigation.navigate("Clientes")}
             m={4}
             w={70}
             h={70}

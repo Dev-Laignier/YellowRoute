@@ -88,7 +88,7 @@ const SignUp = () => {
             source={require("../../../assets/animation/Hello.json")}
           />
         </Animation>
-        <Title>Create your account</Title>
+        <Title>Crie sua conta</Title>
         <Controller
           control={control}
           name="name"

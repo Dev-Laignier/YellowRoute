@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native"; // Import the useNavigation hook to access navigation
 import { DrawerNavigationProp } from "@react-navigation/drawer"; // Import the DrawerNavigationProp type for navigation typing
 import { MaterialIcons } from "@expo/vector-icons";
-import { Text } from "react-native";
 import { HStack, IconButton, Icon } from "native-base";
+import { Title } from "./styles";
 
 // Define the type for Drawer routes
 type RootDrawerParamList = {
@@ -32,9 +32,9 @@ const Header: React.FC = () => {
           }
         />
         {/* Title */}
-        <Text style={{ fontSize: 32, color: "#201140", fontWeight: "700" }}>
+        <Title>
           YellowRoute
-        </Text>
+        </Title>
         {/* More options button */}
         <IconButton
           icon={

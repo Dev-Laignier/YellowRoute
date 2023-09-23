@@ -241,6 +241,15 @@ export default {
     WARNING: '#ffc107',
 
     // Adicione as outras cores aqui
+  },
+  FONTS: {
+    Rubik_300:"Rubik_300Light", 
+    Rubik_400: "Rubik_400Regular", 
+    Rubik_500:  "Rubik_500Medium", 
+    Rubik_600:  "Rubik_600SemiBold", 
+    Rubik_700:  "Rubik_700Bold", 
+    Rubik_800:  "Rubik_800ExtraBold", 
+    Rubik_900:  "Rubik_900Black",
   }
 };
 // export type Theme = typeof dark;

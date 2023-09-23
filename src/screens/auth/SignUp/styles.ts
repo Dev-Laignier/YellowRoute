@@ -27,12 +27,14 @@ export const Title = styled.Text`
   text-align: center;
   margin-bottom: 18px;
   text-shadow: rgba(255,68,221,0.90) 1px 0 10px;
+  font-family: ${({ theme }) => theme.FONTS.Rubik_400};
 `;
 export const Texto = styled.Text`
   font-size: 30px;
   color: ${({ theme }) => theme.COLORS.YELLOW};;
   letter-spacing: 2px;
   font-weight: 800;
+  font-family: ${({ theme }) => theme.FONTS.Rubik_500};
 `;
 export const TextInfo = styled.Text`
   font-size: 12px;
@@ -41,4 +43,5 @@ export const TextInfo = styled.Text`
   width: 85%;
   margin: 12px;
   text-shadow: rgba(255,68,221,0.90) 1px 0 10px;
+  font-family: ${({ theme }) => theme.FONTS.Rubik_400};
 `;

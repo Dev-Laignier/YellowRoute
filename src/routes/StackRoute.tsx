@@ -4,6 +4,7 @@ import Welcome from "../screens/Welcome";
 import Login from "../screens/auth/Login";
 import SignUp from "../screens/auth/SignUp";
 import Home from "../screens/main/Home";
+import Clients from "../screens/main/Clientes";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,13 @@ const StackRoute: React.FC = () => {
         component={Home}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Clientes"
+        component={Clients}
+        options={{
+          headerShown: true,
         }}
       />
     </Stack.Navigator>
