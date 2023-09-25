@@ -173,7 +173,7 @@ const Home: React.FC = () => {
       <HStack space={6}>
         <VStack alignItems={"center"}>
           <IconButton
-            aria-label="user-friends"
+            aria-label="users"
             onPress={() => ""}
             m={4}
             w={70}
@@ -187,13 +187,14 @@ const Home: React.FC = () => {
             icon={
               <Icon
                 size={20}
+                p={1}
                 as={FontAwesome5}
-                name="user-friends"
+                name="users"
                 color={"#006BA1"}
               />
             }
           />
-          <Title>Usuários</Title>
+          <Title>Usuário</Title>
         </VStack>
       </HStack>
       <Footer />

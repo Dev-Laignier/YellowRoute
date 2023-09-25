@@ -7,7 +7,7 @@ type Props = IInputProps & {
   label?: string;
 }
 
-const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
+const InputForm = ({ label, errorMessage = null, isInvalid, value, ...rest }: Props) => {
 
   const invalid = !!errorMessage || isInvalid;
   const [isFocused, setIsFocused] = useState(false);
@@ -15,6 +15,20 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
   const top = new Animated.Value(25);
   const color = isFocused ? "#0891b2" : "#ffffff00";
   const marginTop = isFocused ? 14 : 0; // Inicialmente, definimos a margem como 20
+  const [ isValid, setIsValid ] = useState(false);
+  const borderColor = isValid ? "#4ade80" : (isFocused ? "#0891b2" : "lightgray");
+
+  const valid = () => {
+    if ( value && !errorMessage ) {
+      setIsValid(true);
+  }else{
+    setIsValid(false);
+  };
+};
+
+  useEffect(() => {
+    valid();
+  },[value,errorMessage]);
 
   useEffect(() => {
 
@@ -35,7 +49,7 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
     
     <Animated.View
       style={{
-        borderColor: "lightgray",
+        // borderColor: borderColor,
         paddingTop: 10,
         marginTop, // Usando a margem superior dinâmica
       }}
@@ -43,10 +57,11 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
       <Animated.Text
         style={{
           position: "absolute",
-          left: 13,
+          left: 0,
           top,
-          fontSize,
+          fontSize: 12,
           color,
+          textTransform: "uppercase",
         }}
       >
         {label}
@@ -57,6 +72,8 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
         onBlur={() => setIsFocused(false)}
         placeholder={label}
         isInvalid={invalid}
+        variant={"underlined"}
+        borderColor={borderColor}
         w={"85%"}
         h={55}
         justifyContent={"center"}
@@ -65,15 +82,21 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
         color="info.600"
         {...rest}
         _focus={{
-          borderColor: "lightBlue.400",
+          borderColor: borderColor,
           borderWidth: 2,
-          backgroundColor: "#f6c10140",
-          placeholderTextColor:"#ffffff00"
+          placeholderTextColor:"#ffffff00",
+          borderTopWidth: 0,
+          borderLeftWidth: 0,
+          borderRightWidth: 0,
         }}
         _invalid={{
-          borderColor: "orange.500",
+          borderColor: "#f95e16",
           borderWidth: 2,
-          bgColor: "#f9731630"
+          bgColor: "#f9731630",
+          borderTopWidth: 0,
+          borderLeftWidth: 0,
+          borderRightWidth: 0,
+          placeholderTextColor: "#f97316"
         }}
         {...rest}
       />
@@ -85,4 +108,4 @@ const Input = ({ label, errorMessage = null, isInvalid, ...rest }: Props) => {
   );
 };
 
-export default Input;
+export default InputForm;

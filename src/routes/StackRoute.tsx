@@ -43,7 +43,7 @@ const StackRoute: React.FC = () => {
         name="Clientes"
         component={Clients}
         options={{
-          headerShown: true,
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

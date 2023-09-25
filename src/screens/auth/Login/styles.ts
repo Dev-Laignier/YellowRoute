@@ -32,11 +32,25 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.Rubik_400};
 `;
 
+export const ContainerRecovery = styled.View`
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 85%;
+  height: 40px;
+  margin: 4px 8px 8px 2px;
+`;
+
+export const TextR = styled.Text`
+  font-size: 14px;
+  text-shadow: rgba(255, 68, 221, 0.9) 1px 0 10px;
+  color: ${({ theme }) => theme.COLORS.BLUE}
+`;
+
 export const TextRecovery = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   color: ${({ theme }) => theme.COLORS.BLUE};
   text-align: center;
-  margin-bottom: 12px;
   text-decoration: underline;
   text-shadow: rgba(255, 68, 221, 0.9) 1px 0 10px;
   font-family: ${({ theme }) => theme.FONTS.Rubik_400};

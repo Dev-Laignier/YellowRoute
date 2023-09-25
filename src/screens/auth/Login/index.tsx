@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo"; // Import NetInfo from React Native
+import { MaterialCommunityIcons, FontAwesome } from "@expo/vector-icons";
 import { useNavigation, NavigationProp } from "@react-navigation/native"; // Import the navigation hook from React Navigation
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
 import { ActivityIndicator, Image } from "react-native"; // Import the React Native image component
-import { Center, ScrollView } from "native-base"; // Import the React Native Base components
+import { Center, Icon, IconButton, ScrollView } from "native-base"; // Import the React Native Base components
 import { TouchableOpacity } from "react-native-gesture-handler"; // Import TouchableOpacity to create a clickable button
-import { Texto, Goback, Title, Animation, TextRecovery } from "./styles"; // Import custom styles
+import { Texto, Goback, Title, Animation, TextRecovery, ContainerRecovery, TextR } from "./styles"; // Import custom styles
 import Button from "../../../components/Button"; // Import a custom button component
 import Input from "../../../components/Input"; // Import a custom input component
 import firebaseConfig from "../../../settings/Firebase/firebaseconfig"; // Import a custom Firebase configuration
@@ -41,17 +42,27 @@ const app = initializeApp(firebaseConfig); // Initialize the app with the Fireba
 const auth = getAuth(app); // Get the authentication configuration
 
 const Login = () => {
+
   const navigation: NavigationProp<StackRoutes> = useNavigation(); // Initialize the navigation hook
 
+  const [ show, setShow ] = useState(false);
+  const [ toggle, setToggle ] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  const showPassword = () => {
+    setShow(!show);
+  }
 
   const { control, handleSubmit, formState: { errors }, setValue, getValues } = useForm<FormDataProps>({
     resolver: yupResolver(loginSchema),
   });
 
   useEffect(() => {
+    console.log(toggle);
     // Check if there are stored user data and fill the fields
-    checkAndFillStoredUser();
+    if (toggle === true) {
+      checkAndFillStoredUser();
+    }
   }, []);
 
   const checkAndFillStoredUser = async () => {
@@ -105,6 +116,20 @@ const Login = () => {
     navigation.navigate("Welcome"); // Go back to the previous screen when the button is pressed
   };
 
+  const handleRememberMe = () => {
+
+  };
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+    if (toggle === false) {
+      console.log("Lembrar de mim");
+      // Inserir aqui uma logica para lembrar do usuaruio
+    }else{
+      console.log("não Lembrar de mim")
+    }
+  }
+
   return (
     <ScrollView flex={1} showsVerticalScrollIndicator={false}>
       <Center>
@@ -120,7 +145,7 @@ const Login = () => {
             source={require("../../../assets/animation/Earth_Green_Blue.json")}
           />
         </Animation>
-        <Title style={{ alignSelf: "center" }}>
+        <Title>
           Faça login com seu e-mail e senha
         </Title>
         <Controller
@@ -132,6 +157,11 @@ const Login = () => {
               onChangeText={onChange}
               value={getValues("email")}
               errorMessage={errors.email?.message}
+              InputRightElement={
+                <IconButton m={2} disabled
+              icon={<Icon as={<MaterialCommunityIcons name="email-edit-outline"/>} size={6} color={"#0891b2"}/>}
+              />
+              }
             />
           )}
         />
@@ -141,18 +171,32 @@ const Login = () => {
           render={({ field: { onChange, onBlur } }) => (
             <Input
               label="Password"
-              secureTextEntry
               onChangeText={onChange}
               value={getValues("password")}
               errorMessage={errors.password?.message}
+              type= {show ? "text" : "password" }
+              InputRightElement={ 
+                <IconButton onPress={() => setShow(!show)} m={2} 
+                _icon={{ color: "#0891b2"}}
+                _pressed={{ bg: "#ffffff00", _icon: { color: "#0891b280"}}}
+                icon={<Icon as={<FontAwesome name={ show ? "eye" : "eye-slash"}/>} size={6} />}            
+              />}
             />
           )}
         />
-        <TouchableOpacity onPress={handleForgotPassword} activeOpacity={0.6}>
+        <ContainerRecovery>
+          <TouchableOpacity onPress={handleToggle} activeOpacity={0.6}>
+            <FontAwesome name={ toggle ? "toggle-on" : "toggle-off" } size={32} style={{ color: "#630d7ee2" , marginLeft: 8 }}/>
+          </TouchableOpacity>
+          <TextR style={{ marginLeft: -34 }}>
+            Lembrar de mim
+          </TextR>
+        <TouchableOpacity onPress={handleForgotPassword} activeOpacity={0.6} >
           <TextRecovery>
-            Esqueceu sua senha? podemos te ajudar!!
+            Recuperar senha?
           </TextRecovery>
         </TouchableOpacity>
+        </ContainerRecovery>
         <Button onPress={handleSubmit(handleLogin)} mb={12}>
         {loading ? (
             <ActivityIndicator color="#0891b2" size={32} /> // Indicador de carregamento

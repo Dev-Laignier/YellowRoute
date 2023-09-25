@@ -4,7 +4,7 @@ export default {
     TITLE: "#201140",
     BLUE: "#201140",
     BUTTON: "rgba(32,17,64,0.85)",
-    TEXTSHADOW: "rgba(255,68,221,0.90)",
+    TEXTSHADOW: "#630d7ee2",
 
     BACKGROUND: "#f8f8f8",
     YELLOW: "#F6C101",
@@ -245,13 +245,11 @@ export default {
     // Adicione as outras cores aqui
   },
   FONTS: {
-    Rubik_300:"Rubik_300Light", 
-    Rubik_400: "Rubik_400Regular", 
-    Rubik_500:  "Rubik_500Medium", 
-    Rubik_600:  "Rubik_600SemiBold", 
-    Rubik_700:  "Rubik_700Bold", 
-    Rubik_800:  "Rubik_800ExtraBold", 
-    Rubik_900:  "Rubik_900Black",
+    Rubik_300:"Rubik_Light", 
+    Rubik_400: "Rubik_Regular", 
+    Rubik_500:  "Rubik_Medium", 
+    Rubik_700:  "Rubik_Bold", 
+    Rubik_900:  "Rubik_Black",
   }
 };
 

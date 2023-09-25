@@ -4,7 +4,7 @@ export default {
     TITLE: "#201140",
     BLUE: "#F6C101",
     BUTTON: "rgba(246,193,1,0.85)",
-    TEXTSHADOW: "rgba(255,68,221,0.90)",
+    TEXTSHADOW: "#630d7ee2",
 
     BACKGROUND: "#f8f8f8",
     YELLOW: "#201140",
@@ -243,13 +243,11 @@ export default {
     // Adicione as outras cores aqui
   },
   FONTS: {
-    Rubik_300:"Rubik_300Light", 
-    Rubik_400: "Rubik_400Regular", 
-    Rubik_500:  "Rubik_500Medium", 
-    Rubik_600:  "Rubik_600SemiBold", 
-    Rubik_700:  "Rubik_700Bold", 
-    Rubik_800:  "Rubik_800ExtraBold", 
-    Rubik_900:  "Rubik_900Black",
+    Rubik_300:"Rubik_Light", 
+    Rubik_400: "Rubik_Regular", 
+    Rubik_500:  "Rubik_Medium", 
+    Rubik_700:  "Rubik_Bold", 
+    Rubik_900:  "Rubik_Black",
   }
 };
 // export type Theme = typeof dark;

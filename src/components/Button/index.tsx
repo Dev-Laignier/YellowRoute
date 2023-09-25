@@ -12,7 +12,7 @@ interface CustomButtonProps extends IButtonProps {
 const Button: React.FC<CustomButtonProps> = ({ onPress,...rest }) => {
   return (
     <ButtonNative
-      w={320}
+      w={"85%"}
       h={60}
       bg={"rgba(32,17,64,0.90)"}
       borderRadius={12}

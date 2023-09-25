@@ -1,8 +1,9 @@
 import React, { useState } from "react"; //
 import { useNavigation, NavigationProp } from "@react-navigation/native"; //
+import { Entypo, MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
 import { ActivityIndicator, Image } from "react-native"; // import the image component
-import { Center, ScrollView } from "native-base"; // import Component from
+import { Center, Icon, IconButton, ScrollView } from "native-base"; // import Component from
 import { Texto, Goback, Title, TextInfo, Animation } from "./styles"; // import styles from "./styles
 import Button from "../../../components/Button"; // import ButtonComponent from "../../../components/Button
 import Input from "../../../components/Input"; // import Input from "../../../components/Input
@@ -98,6 +99,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("name")}
               errorMessage={errors.name?.message}
+              InputLeftElement={
+                <IconButton
+                  disabled
+                  mr={-4}
+                  icon={<Icon as={<Entypo name="user"/>} size={8}/>}
+                />
+              }
             />
           )}
         />
@@ -110,6 +118,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("lastName")}
               errorMessage={errors.lastName?.message}
+              InputLeftElement={
+                <IconButton
+                  disabled
+                  mr={-4}
+                  icon={<Icon as={<Entypo name="user"/>} size={8}/>}
+                />
+              }
             />
           )}
         />
@@ -122,6 +137,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("email")}
               errorMessage={errors.email?.message}
+              InputLeftElement={
+                <IconButton
+                  disabled
+                  mr={-4}
+                  icon={<Icon as={<MaterialCommunityIcons name="email-edit-outline"/>} size={8}/>}
+                />
+              }
             />
           )}
         />
@@ -134,6 +156,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("password")}
               errorMessage={errors.password?.message}
+              InputLeftElement={
+                <IconButton
+                  disabled
+                  mr={-4}
+                  icon={<Icon as={<Fontisto name="locked"/>} size={8}/>}
+                />
+              }
             />
           )}
         />
@@ -146,6 +175,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("passwordConfirm")}
               errorMessage={errors.passwordConfirm?.message}
+              InputLeftElement={
+                <IconButton
+                  disabled
+                  mr={-4}
+                  icon={<Icon as={<Fontisto name="locked"/>} size={8}/>}
+                />
+              }
             />
           )}
         />
