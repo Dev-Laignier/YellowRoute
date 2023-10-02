@@ -45,6 +45,8 @@ const SignUp = () => {
   const navigation: NavigationProp<StackRoutes> = useNavigation();
 
   const [loading, setLoading] = useState(false);
+  const [ show, setShow ] = useState(false);
+  const [ showConfirm, setShowConfirm ] = useState(false);
 
   const {
     control,
@@ -69,7 +71,8 @@ const SignUp = () => {
       .catch((error) => {
         // Handle registration error
         console.log(error);
-        alert(error); // Display error message if login fails
+        console.log("Erro ao cadastrar usuario...");
+        alert("Erro ao cadastrar usuario..."); // Display error message if login fails
       });
       setLoading(false);
   };
@@ -156,13 +159,15 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("password")}
               errorMessage={errors.password?.message}
-              InputLeftElement={
+              type= {show ? "text" : "password" }
+              InputLeftElement={ 
                 <IconButton
-                  disabled
-                  mr={-4}
-                  icon={<Icon as={<Fontisto name="locked"/>} size={8}/>}
-                />
-              }
+                onPress={() => setShow(!show)} 
+                _icon={{ color: "#0891b2"}}
+                mr={-4}
+                _pressed={{ bg: "#ffffff00", _icon: { color: "#0891b280"}}}
+                icon={<Icon as={<Fontisto name={ show ? "unlocked" : "locked"}/>} size={8} />}            
+              />}
             />
           )}
         />
@@ -175,13 +180,15 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("passwordConfirm")}
               errorMessage={errors.passwordConfirm?.message}
-              InputLeftElement={
+              type= {showConfirm ? "text" : "password" }
+              InputLeftElement={ 
                 <IconButton
-                  disabled
-                  mr={-4}
-                  icon={<Icon as={<Fontisto name="locked"/>} size={8}/>}
-                />
-              }
+                onPress={() => setShowConfirm(!showConfirm)} 
+                _icon={{ color: "#0891b2"}}
+                mr={-4}
+                _pressed={{ bg: "#ffffff00", _icon: { color: "#0891b280"}}}
+                icon={<Icon as={<Fontisto name={ showConfirm ? "unlocked" : "locked"}/>} size={8} />}            
+              />}
             />
           )}
         />

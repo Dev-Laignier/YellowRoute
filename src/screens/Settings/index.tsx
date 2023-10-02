@@ -1,10 +1,10 @@
 import React from "react";
 import { VStack, Center, ScrollView } from "native-base";
-import { TouchableOpacity } from "react-native";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
+import { Text } from "react-native";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
-const Agenda: React.FC = () => {
+const Settings: React.FC = () => {
   return (
     <VStack
       pl={"1%"}
@@ -16,10 +16,14 @@ const Agenda: React.FC = () => {
     >
       <Header />
       <ScrollView backgroundColor={"#F8F8F8"} flex={1} w={"99%"}>
-        <Center></Center>
+        <Center>
+            <Text style={{fontSize:32, marginTop: 300}}>
+                Settings
+            </Text>
+        </Center>
       </ScrollView>
       <Footer />
     </VStack>
   );
 };
-export default Agenda;
+export default Settings;

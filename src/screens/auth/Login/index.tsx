@@ -58,7 +58,6 @@ const Login = () => {
   });
 
   useEffect(() => {
-    console.log(toggle);
     // Check if there are stored user data and fill the fields
     if (toggle === true) {
       checkAndFillStoredUser();
@@ -122,7 +121,7 @@ const Login = () => {
 
   const handleToggle = () => {
     setToggle(!toggle);
-    if (toggle === false) {
+    if (toggle === true) {
       console.log("Lembrar de mim");
       // Inserir aqui uma logica para lembrar do usuaruio
     }else{
@@ -186,7 +185,7 @@ const Login = () => {
         />
         <ContainerRecovery>
           <TouchableOpacity onPress={handleToggle} activeOpacity={0.6}>
-            <FontAwesome name={ toggle ? "toggle-on" : "toggle-off" } size={32} style={{ color: "#630d7ee2" , marginLeft: 8 }}/>
+            <FontAwesome name={ toggle ? "toggle-off" : "toggle-on" } size={32} style={{ color: "#630d7ee2" , marginLeft: 8 }}/>
           </TouchableOpacity>
           <TextR style={{ marginLeft: -34 }}>
             Lembrar de mim
