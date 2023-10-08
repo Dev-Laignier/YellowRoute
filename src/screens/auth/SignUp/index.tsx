@@ -1,6 +1,6 @@
 import React, { useState } from "react"; //
 import { useNavigation, NavigationProp } from "@react-navigation/native"; //
-import { Entypo, MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 import LottieView from "lottie-react-native"; // Import the Lottie animation component
 import { ActivityIndicator, Image } from "react-native"; // import the image component
 import { Center, Icon, IconButton, ScrollView } from "native-base"; // import Component from
@@ -102,13 +102,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("name")}
               errorMessage={errors.name?.message}
-              InputLeftElement={
-                <IconButton
-                  disabled
-                  mr={-4}
-                  icon={<Icon as={<Entypo name="user"/>} size={8}/>}
-                />
-              }
+              // InputLeftElement={
+              //   <IconButton
+              //     disabled
+              //     mr={-4}
+              //     icon={<Icon as={<Entypo name="user"/>} size={8}/>}
+              //   />
+              // }
             />
           )}
         />
@@ -121,13 +121,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("lastName")}
               errorMessage={errors.lastName?.message}
-              InputLeftElement={
-                <IconButton
-                  disabled
-                  mr={-4}
-                  icon={<Icon as={<Entypo name="user"/>} size={8}/>}
-                />
-              }
+              // InputLeftElement={
+              //   <IconButton
+              //     disabled
+              //     mr={-4}
+              //     icon={<Icon as={<Entypo name="user"/>} size={8}/>}
+              //   />
+              // }
             />
           )}
         />
@@ -140,13 +140,13 @@ const SignUp = () => {
               onChangeText={onChange}
               value={getValues("email")}
               errorMessage={errors.email?.message}
-              InputLeftElement={
-                <IconButton
-                  disabled
-                  mr={-4}
-                  icon={<Icon as={<MaterialCommunityIcons name="email-edit-outline"/>} size={8}/>}
-                />
-              }
+              // InputLeftElement={
+              //   <IconButton
+              //     disabled
+              //     mr={-4}
+              //     icon={<Icon as={<MaterialCommunityIcons name="email-edit-outline"/>} size={8}/>}
+              //   />
+              // }
             />
           )}
         />
@@ -160,14 +160,15 @@ const SignUp = () => {
               value={getValues("password")}
               errorMessage={errors.password?.message}
               type= {show ? "text" : "password" }
-              InputLeftElement={ 
+              InputRightElement={ 
                 <IconButton
                 onPress={() => setShow(!show)} 
                 _icon={{ color: "#0891b2"}}
-                mr={-4}
+                ml={4}
                 _pressed={{ bg: "#ffffff00", _icon: { color: "#0891b280"}}}
                 icon={<Icon as={<Fontisto name={ show ? "unlocked" : "locked"}/>} size={8} />}            
-              />}
+                />
+              }
             />
           )}
         />
@@ -181,14 +182,15 @@ const SignUp = () => {
               value={getValues("passwordConfirm")}
               errorMessage={errors.passwordConfirm?.message}
               type= {showConfirm ? "text" : "password" }
-              InputLeftElement={ 
+              InputRightElement={ 
                 <IconButton
                 onPress={() => setShowConfirm(!showConfirm)} 
                 _icon={{ color: "#0891b2"}}
-                mr={-4}
+                ml={4}
                 _pressed={{ bg: "#ffffff00", _icon: { color: "#0891b280"}}}
                 icon={<Icon as={<Fontisto name={ showConfirm ? "unlocked" : "locked"}/>} size={8} />}            
-              />}
+                />
+              }
             />
           )}
         />
