@@ -6,13 +6,25 @@ import LottieView from "lottie-react-native"; // Import the Lottie animation com
 import { ActivityIndicator, Image } from "react-native"; // Import the React Native image component
 import { Center, Icon, IconButton, ScrollView } from "native-base"; // Import the React Native Base components
 import { TouchableOpacity } from "react-native-gesture-handler"; // Import TouchableOpacity to create a clickable button
-import { Texto, Goback, Title, Animation, TextRecovery, ContainerRecovery, TextR } from "./styles"; // Import custom styles
+import {
+  Texto,
+  Goback,
+  Title,
+  Animation,
+  TextRecovery,
+  ContainerRecovery,
+  TextR,
+} from "./styles"; // Import custom styles
 import Button from "../../../components/Button"; // Import a custom button component
 import Input from "../../../components/Input"; // Import a custom input component
 import firebaseConfig from "../../../settings/Firebase/firebaseconfig"; // Import a custom Firebase configuration
 import { initializeApp } from "firebase/app"; // Initialize the app with the Firebase configuration
-import { getAuth, signInWithEmailAndPassword, UserCredential } from "firebase/auth"; // Get the auth token from the Firebase configuration object and pass it to the login method when the user is logged in with the Firebase credentials passed 
-import AsyncStorage from '@react-native-community/async-storage'; // Import AsyncStorage for local storagefrom the Firebase configuration object and pass it to the login method when the user is logged in with the Firebase credentials
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  UserCredential,
+} from "firebase/auth"; // Get the auth token from the Firebase configuration object and pass it to the login method when the user is logged in with the Firebase credentials passed
+import AsyncStorage from "@react-native-community/async-storage"; // Import AsyncStorage for local storagefrom the Firebase configuration object and pass it to the login method when the user is logged in with the Firebase credentials
 import { useForm, Controller } from "react-hook-form"; // Import react-hook-form and related packages
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -34,34 +46,61 @@ type FormDataProps = {
 
 // Validation schema for the form fields
 const loginSchema = yup.object({
-  email: yup.string().required("Preencha seu e-mail.").email("E-mail invalido."),
-  password: yup.string().required("Preencha sua senha.").min(6, "A senha deve ter pelo menos 6 caracteres."),
+  email: yup
+    .string()
+    .required("Preencha seu e-mail.")
+    .email("E-mail invalido."),
+  password: yup
+    .string()
+    .required("Preencha sua senha.")
+    .min(6, "A senha deve ter pelo menos 6 caracteres."),
 });
 
 const app = initializeApp(firebaseConfig); // Initialize the app with the Firebase configuration
 const auth = getAuth(app); // Get the authentication configuration
 
-const Login = () => {
-
+const Login: React.FC = () => {
   const navigation: NavigationProp<StackRoutes> = useNavigation(); // Initialize the navigation hook
 
-  const [ show, setShow ] = useState(false);
-  const [ toggle, setToggle ] = useState(true);
+  const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
-  function showPassword() {
-    setShow(!show);
-  }
-
-  const { control, handleSubmit, formState: { errors }, setValue, getValues } = useForm<FormDataProps>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    getValues,
+  } = useForm<FormDataProps>({
     resolver: yupResolver(loginSchema),
   });
 
   useEffect(() => {
-    // Check if there are stored user data and fill the fields
-    if (toggle === true) {
-      checkAndFillStoredUser();
-    }
+    const rememberEmail = async () => {
+      try {
+        // Check if there are stored user data and fill the fields
+        if (toggle === true) {
+          checkAndFillStoredUser();
+        }
+      } catch (error) {}
+    };
+
+    rememberEmail();
+  }, []);
+
+  useEffect(() => {
+    const loadToggle = async () => {
+      try {
+        const storedToggle = await AsyncStorage.getItem("toggleData");
+        if (storedToggle !== null) {
+          setToggle(JSON.parse(storedToggle));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    loadToggle();
     console.log(toggle);
   }, []);
 
@@ -91,7 +130,11 @@ const Login = () => {
           password: data.password,
         })
       );
-      const userCredential: UserCredential = await signInWithEmailAndPassword( auth, data.email, data.password);
+      const userCredential: UserCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
       const user = userCredential.user;
 
       // After successful login, get the authentication token
@@ -104,7 +147,7 @@ const Login = () => {
     } catch (error) {
       console.error(error);
       console.log(error);
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -117,19 +160,18 @@ const Login = () => {
     navigation.navigate("Welcome"); // Go back to the previous screen when the button is pressed
   };
 
-  const handleRememberMe = () => {
+  const handleToggle = async () => {
+    const newValue = !toggle;
 
-  };
-
-  const handleToggle = () => {
-    setToggle(!toggle);
-    if (toggle === true) {
-      console.log("Lembrar de mim");
-      // Inserir aqui uma logica para lembrar do usuaruio
-    }else{
-      console.log("não Lembrar de mim");
+    // Salve o novo valor de toggle no AsyncStorage
+    try {
+      await AsyncStorage.setItem("toggleData", JSON.stringify(newValue));
+    } catch (error) {
+      console.error(error);
     }
-  }
+    setToggle(newValue);
+    console.log(toggle);
+  };
 
   return (
     <ScrollView flex={1} showsVerticalScrollIndicator={false}>
@@ -146,9 +188,7 @@ const Login = () => {
             source={require("../../../assets/animation/Earth_Green_Blue.json")}
           />
         </Animation>
-        <Title>
-          Faça login com seu e-mail e senha
-        </Title>
+        <Title>Faça login com seu e-mail e senha</Title>
         <Controller
           control={control}
           name="email"
@@ -170,31 +210,39 @@ const Login = () => {
               onChangeText={onChange}
               value={getValues("password")}
               errorMessage={errors.password?.message}
-              type= {show ? "text" : "password" }
-              InputRightElement={ 
-                <IconButton onPress={() => setShow(!show)} m={2} 
-                _icon={{ color: "#0891b2"}}
-                _pressed={{ bg: "#ffffff00", _icon: { color: "#0891b280"}}}
-                icon={<Icon as={<FontAwesome name={ show ? "eye" : "eye-slash"}/>} size={6} />}            
-              />}
+              type={show ? "text" : "password"}
+              InputRightElement={
+                <IconButton
+                  onPress={() => setShow(!show)}
+                  m={2}
+                  _icon={{ color: "#0891b2" }}
+                  _pressed={{ bg: "#ffffff00", _icon: { color: "#0891b280" } }}
+                  icon={
+                    <Icon
+                      as={<FontAwesome name={show ? "eye" : "eye-slash"} />}
+                      size={6}
+                    />
+                  }
+                />
+              }
             />
           )}
         />
         <ContainerRecovery>
           <TouchableOpacity onPress={handleToggle} activeOpacity={0.6}>
-            <FontAwesome name={ toggle ? "toggle-on" : "toggle-off" } size={32} style={{ color: "#630d7ee2" , marginLeft: 8 }}/>
+            <FontAwesome
+              name={toggle ? "toggle-off" : "toggle-on"}
+              size={32}
+              style={{ color: "#630d7ee2", marginLeft: 8 }}
+            />
           </TouchableOpacity>
-          <TextR style={{ marginLeft: -34 }}>
-            Lembrar de mim
-          </TextR>
-        <TouchableOpacity onPress={handleForgotPassword} activeOpacity={0.6} >
-          <TextRecovery>
-            Recuperar senha?
-          </TextRecovery>
-        </TouchableOpacity>
+          <TextR style={{ marginLeft: -34 }}>Lembrar de mim</TextR>
+          <TouchableOpacity onPress={handleForgotPassword} activeOpacity={0.6}>
+            <TextRecovery>Recuperar senha?</TextRecovery>
+          </TouchableOpacity>
         </ContainerRecovery>
         <Button onPress={handleSubmit(handleLogin)} mb={12}>
-        {loading ? (
+          {loading ? (
             <ActivityIndicator color="#0891b2" size={32} /> // Indicador de carregamento
           ) : (
             <Texto>Login</Texto> // Texto do botão
